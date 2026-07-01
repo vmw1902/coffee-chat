@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"path": "../app"
+		}
+	],
+	"settings": {
+		"typescript.format.enable": true,
+		"eslint.validate": [
+			"javascript",
+			{
+				"language": "typescript",
+				"autoFix": true
+			},
+			{
+				"language": "vue",
+				"autoFix": true
+			}
+		],
+		"vetur.completion.autoImport": false,
+		"editor.wordWrapColumn": 80,
+		"vetur.format.defaultFormatterOptions": {
+			"prettier": {
+				"singleQuote": true
+			}
+		},
+		"vetur.format.defaultFormatter.css": "prettier",
+		"vetur.format.defaultFormatter.html": "prettier",
+		"vetur.format.defaultFormatter.js": "prettier",
+		"vetur.format.defaultFormatter.less": "prettier",
+		"vetur.format.defaultFormatter.postcss": "prettier",
+		"vetur.format.defaultFormatter.scss": "prettier",
+		"vetur.format.defaultFormatter.stylus": "stylus-supremacy",
+		"vetur.validation.script": false,
+		"editor.formatOnSave": true
+	},
+	"extensions": {
+		"recommendations": [
+			"dbaeumer.vscode-eslint",
+			"octref.vetur"
+		]
+	}
+}
