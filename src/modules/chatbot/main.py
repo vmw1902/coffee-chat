@@ -32,7 +32,7 @@ app = FastAPI(lifespan=lifespan)
 class CoffeeRequest(BaseModel):
     message: str
 
-@app.post("/coffee")
+@app.post("/chat")
 def coffee(req: CoffeeRequest):
     response = requests.post(
         f"{OLLAMA_URL}/api/chat",
