@@ -7,12 +7,16 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: RoutePaths.ROOT,
+      name: RouteNames.ROOT,
+      redirect() {
+        return { path: `${RoutePaths.DASHBOARD}` }
+      },
+    },
+    {
       path: RoutePaths.DASHBOARD,
       name: RouteNames.DASHBOARD,
       component: DashboardPage,
-      redirect() {
-        return { path: `${RoutePaths.DASHBOARD}/${RoutePaths.HOME}` }
-      },
       children: [
         {
           path: RoutePaths.HOME,
