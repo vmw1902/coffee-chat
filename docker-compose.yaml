@@ -31,5 +31,26 @@ services:
     environment:
       OLLAMA_URL: http://ollama:11434
 
+  webapp:
+    container_name: webapp
+    ports:
+      - 5173:5173
+    build:
+      context: src/modules/webapp
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./src/modules/webapp/src:/app/src
+
+  reactor:
+    container_name: reactor
+    ports:
+      - 3000:3000
+    build:
+      context: src/modules/reactor
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./src/modules/reactor/src:/app/src/
+      - ./src/modules/reactor/data:/app/data/
+
 volumes:
   ollama:

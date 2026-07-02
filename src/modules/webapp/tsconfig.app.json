@@ -1,14 +1,20 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "node_modules/",
+    "postcss.config.js",
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
-    // Extra safety for array and object lookups, but may have false positives.
     "noUncheckedIndexedAccess": true,
-
-    // Path mapping for cleaner imports.
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@src/*": ["../../*"]
     },
 
     // `vue-tsc --build` produces a .tsbuildinfo file for incremental type-checking.
