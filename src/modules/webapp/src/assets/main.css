@@ -1,5 +1,7 @@
 @import './base.css';
-@import 'tailwindcss';
+/* @import 'tailwindcss'; */
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
 
 #app {
   max-width: 1280px;

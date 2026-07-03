@@ -3,7 +3,9 @@ import os
 import requests
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
 
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 MODEL = "llama3.2:3b"
@@ -28,6 +30,15 @@ async def lifespan(_: FastAPI):
     yield
 
 app = FastAPI(lifespan=lifespan)
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class CoffeeRequest(BaseModel):
     message: str

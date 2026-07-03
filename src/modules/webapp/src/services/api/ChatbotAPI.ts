@@ -1,5 +1,5 @@
 import type { AxiosResponse } from 'axios'
-import coffeeApiClient from './coffee-api-client'
+import chatbotApiClient from './chatbot-api-client'
 
 interface ChatbotBotReponse {
   wants_more: boolean
@@ -8,7 +8,7 @@ interface ChatbotBotReponse {
 }
 
 export class ChatbotAPI {
-  chatbotControllerSendMessage(message: string): Promise<AxiosResponse<ChatbotBotReponse>> {
-    return coffeeApiClient.post('/chat', message)
+  static chatbotControllerSendMessage(message: string): Promise<AxiosResponse<ChatbotBotReponse>> {
+    return chatbotApiClient.post('/chat', { message })
   }
 }
