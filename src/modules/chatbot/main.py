@@ -13,7 +13,7 @@ MODEL = "llama3.2:3b"
 SYSTEM_PROMPT = (
     'Classify coffee-mahine requests. Reply ONLY with JSON: '
     '{"wants_more": bool, "asking_amount": bool, '
-    '"machine_should_be": "on"|"off"|"unchenged"}'
+    '"machine_should_be": "on"|"off"|"unchanged"}'
 )
 
 @asynccontextmanager
