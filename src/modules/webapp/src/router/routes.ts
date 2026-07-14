@@ -3,6 +3,8 @@ export enum RoutePaths {
   DASHBOARD = '/dashboard',
   HOME = '/home',
   ABOUT = '/about',
+  COFFEE = '/coffee',
+  CHAT_VIEW = '/chat',
 }
 
 export enum RouteNames {
@@ -10,4 +12,6 @@ export enum RouteNames {
   DASHBOARD = 'dashboard',
   DASHBOARD_HOME = 'dashboard-home',
   DASHBOARD_ABOUT = 'dashboard-about',
+  COFFEE = 'coffee',
+  COFFEE_CHAT_VIEW = 'coffee-chat-view',
 }
