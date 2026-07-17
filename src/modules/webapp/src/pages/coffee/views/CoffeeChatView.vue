@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row gap-6 p-6">
-    <CoffeeChat class="flex-1" />
+    <CoffeeChat />
     <CoffeeStatus />
   </div>
 </template>

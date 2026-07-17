@@ -1,7 +1,11 @@
 <template>
   <div class="flex flex-col">
     <div>
-      <div v-for="message in messages" :key="message.id" :class="message.sender">
+      <div
+        v-for="message in messages"
+        :key="message.sender + message.text"
+        :class="message.sender === 'CoffeeBot' ? 'coffee-bot' : 'user'"
+      >
         <strong>{{ message.sender }}:</strong>
         <p>{{ message.text }}</p>
       </div>
@@ -26,17 +30,14 @@ const newMessage = ref('')
 
 const messages = ref([
   {
-    id: 1,
     sender: 'User',
     text: 'Make me a latte.',
   },
   {
-    id: 2,
     sender: 'CoffeeBot',
     text: 'Starting your latte!',
   },
   {
-    id: 3,
     sender: 'User',
     text: 'Thanks!',
   },

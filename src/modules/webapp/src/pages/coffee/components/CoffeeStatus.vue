@@ -5,8 +5,6 @@
 
     <div class="info">
       <p><strong>Status:</strong> {{ status }}</p>
-      <p><strong>Water:</strong> {{ waterLevel }}%</p>
-      <p><strong>Beans:</strong> {{ beanLevel }}%</p>
       <p><strong>Temperature:</strong> {{ temperature }}°C</p>
       <p><strong>Drink:</strong> {{ currentDrink }}</p>
       <p><strong>Cups Today:</strong> {{ cupsToday }}</p>
@@ -15,17 +13,34 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import CoffePot from './CoffePot.vue'
 
-const coffeeLevel = ref(0.75)
-const machineName = 'CoffeeBot test'
-const status = 'Idle'
-const waterLevel = 82
-const beanLevel = 64
-const temperature = 92
-const currentDrink = 'Latte'
-const cupsToday = 17
+const props = defineProps({
+  machineName: {
+    type: String,
+    default: 'CoffeeBot test',
+  },
+  status: {
+    type: String,
+    default: 'Idle',
+  },
+  coffeeLevel: {
+    type: Number,
+    default: 0.75,
+  },
+  temperature: {
+    type: Number,
+    default: 92,
+  },
+  currentDrink: {
+    type: String,
+    default: 'Latte',
+  },
+  cupsToday: {
+    type: Number,
+    default: 17,
+  },
+})
 </script>
 
 <style scoped>
