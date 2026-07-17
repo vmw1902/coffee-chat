@@ -3,7 +3,7 @@
     <div>
       <div v-for="message in messages" :key="message.id" :class="message.sender">
         <strong>{{ message.sender }}:</strong>
-        {{ message.text }}
+        <p>{{ message.text }}</p>
       </div>
     </div>
 
