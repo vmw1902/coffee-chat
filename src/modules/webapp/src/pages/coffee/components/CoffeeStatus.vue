@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import CoffePot from './CoffePot.vue'
 
-const props = defineProps({
+defineProps({
   machineName: {
     type: String,
     default: 'CoffeeBot test',
