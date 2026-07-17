@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row gap-6 p-6">
-    <CoffeeChat />
-    <CoffeeStatus />
+    <CoffeeChat class="w-1/2" />
+    <CoffeeStatus class="w-1/2" />
   </div>
 </template>
 <script setup lang="ts">
