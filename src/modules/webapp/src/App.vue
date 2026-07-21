@@ -1,7 +1,6 @@
 <template>
   <nav class="links">
     <RouterLink :to="{ name: home }">Home</RouterLink>
-    <RouterLink :to="{ name: about }">About</RouterLink>
     <RouterLink :to="{ name: coffeeChat }">Coffee Chat</RouterLink>
   </nav>
   <RouterView class="app" id="app" />
@@ -12,7 +11,6 @@ import { RouteNames } from '@/router/routes'
 import { RouterLink, RouterView } from 'vue-router'
 
 const home = RouteNames.DASHBOARD_HOME
-const about = RouteNames.DASHBOARD_ABOUT
 const coffeeChat = RouteNames.COFFEE_CHAT_VIEW
 </script>
 <style scoped>

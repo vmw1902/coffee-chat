@@ -12,7 +12,7 @@ const router = createRouter({
       path: RoutePaths.ROOT,
       name: RouteNames.ROOT,
       redirect() {
-        return { path: `${RoutePaths.DASHBOARD}` }
+        return { path: `${RoutePaths.HOME}` }
       },
     },
     {
@@ -24,11 +24,6 @@ const router = createRouter({
           path: RoutePaths.HOME,
           name: RouteNames.DASHBOARD_HOME,
           component: HomeView,
-        },
-        {
-          path: RoutePaths.ABOUT,
-          name: RouteNames.DASHBOARD_ABOUT,
-          component: () => import('../pages/dashboard/views/AboutView.vue'),
         },
       ],
     },
