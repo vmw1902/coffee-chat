@@ -62,13 +62,13 @@ const messages = ref([
   background: white;
 }
 
-.User {
+.user {
   text-align: right;
   color: #0b7a2f;
   margin-bottom: 12px;
 }
 
-.CoffeeBot {
+.coffee-bot {
   text-align: left;
   color: #6f4e37;
   margin-bottom: 12px;
