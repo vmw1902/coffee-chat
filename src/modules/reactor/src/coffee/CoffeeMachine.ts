@@ -6,7 +6,7 @@ export class CoffeeMachine {
   temperature = 0;
   currentDrink: CoffeeDrink = 'Latte';
   cupsToday = 0;
-  coffeeLevel = 0.75;
+  coffeeLevel = 0.8;
 }
 
 export interface UpdateCoffeeStatusRequest {
