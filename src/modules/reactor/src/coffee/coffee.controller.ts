@@ -1,9 +1,8 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
-import {
-  BrewCoffeeRequest,
-  BrewCoffeeResponse,
-  CoffeeStatus,
+import { Body, Controller, Get, Put } from '@nestjs/common';
+import { CoffeeMachine } from './CoffeeMachine';
+import type {
   UpdateCoffeeStatusRequest,
+  UpdateCoffeeStatusResponse,
 } from './CoffeeMachine';
 import { CoffeeService } from './coffee.service';
 
@@ -12,17 +11,14 @@ export class CoffeeController {
   constructor(private readonly coffeeService: CoffeeService) {}
 
   @Get()
-  getCoffeeStatus(): CoffeeStatus {
-    retun this.coffeeService.getCoffeeStatus();
-  }
-
-  @Post('brew')
-  brewCoffee(@Body() body: BrewCoffeeRequest): BrewCoffeeResponse {
-    retun this.coffeeService.brewCoffee(body);
+  getCoffeeStatus(): CoffeeMachine {
+    return this.coffeeService.getCoffeeStatus();
   }
 
   @Put('status')
-  updateStatus(@Body() body: UpdateCoffeeStatusRequest): CoffeeStatus {
-    retun this.coffeeService.updateStatus(body);
+  updateStatus(
+    @Body() body: UpdateCoffeeStatusRequest,
+  ): UpdateCoffeeStatusResponse {
+    return this.coffeeService.updateStatus(body);
   }
 }

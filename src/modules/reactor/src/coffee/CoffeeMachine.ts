@@ -1,26 +1,23 @@
-export class CoffeeMachine {
-  status = 'Idle';
-  temperature = 92;
-  currentDrink = 'Latte';
-  cupsToday = 17;
-}
+export type MachineStatus = 'on' | 'off';
+export type MachineStatusCommand = MachineStatus | 'unchanged';
+export type CoffeeDrink = 'Latte' | 'Espresso' | 'Cappuccino' | 'Americano';
 
-export interface BrewCoffeeRequest {
-  drink: string;
+export class CoffeeMachine {
+  status: MachineStatus = 'off';
+  temperature = 0;
+  currentDrink: CoffeeDrink = 'Latte';
+  cupsToday = 0;
+  coffeeLevel = 0.75;
 }
 
 export interface UpdateCoffeeStatusRequest {
-  status?: string;
-  temperature?: number;
+  wants_more: boolean;
+  asking_amount: boolean;
+  machine_should_be: MachineStatusCommand;
+  message: string;
 }
 
-export interface CoffeeStatus {
-  status: string;
-  temperature: number;
-  currentDrink: string;
-  cupsToday: number;
-}
-
-export interface BrewCoffeeResponse {
-  success: boolean;
+export interface UpdateCoffeeStatusResponse {
+  coffeeMachine: CoffeeMachine;
+  history: string[];
 }
