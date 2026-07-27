@@ -14,29 +14,31 @@ export class CoffeeService {
     return this.coffeeMachine;
   }
 
-  updateStatus({
-    wants_more,
-    machine_should_be,
-    message,
-  }: UpdateCoffeeStatusRequest): UpdateCoffeeStatusResponse {
+  updateStatus(
+    status: UpdateCoffeeStatusRequest,
+  ): UpdateCoffeeStatusResponse {
     const changes: string[] = [];
 
-    if (wants_more) {
+    if (status.wants_more) {
       this.coffeeMachine.coffeeLevel = Math.max(
         0,
         this.coffeeMachine.coffeeLevel - 0.1,
       );
       this.coffeeMachine.cupsToday += 1;
-      changes.push('Made another coffee.');
+      changes.push('Made another coffee');
     }
 
-    if (machine_should_be !== 'unchanged') {
-      this.coffeeMachine.status = machine_should_be;
-      this.coffeeMachine.temperature = machine_should_be === 'on' ? 205 : 0;
-      changes.push(`Turned the machine ${machine_should_be}.`);
+    if (status.machine_should_be !== 'unchanged') {
+      this.coffeeMachine.status = status.machine_should_be;
+      this.coffeeMachine.temperature =
+        status.machine_should_be === 'on' ? 205 : 0;
+      changes.push(`Turned the machine ${status.machine_should_be}`);
     }
 
-    this.history.push(`User: ${message}`, this.createMachineMessage(changes));
+    this.history.push(
+      `User: ${status.message}`,
+      this.createMachineMessage(changes),
+    );
 
     return {
       coffeeMachine: this.coffeeMachine,
@@ -46,7 +48,7 @@ export class CoffeeService {
 
   private createMachineMessage(changes: string[]): string {
     return changes.length > 0
-      ? `CoffeeBot: ${changes.join(' ')}`
+      ? `CoffeeBot: ${changes.join(', ')}`
       : 'CoffeeBot: No changes were needed.';
   }
 }
