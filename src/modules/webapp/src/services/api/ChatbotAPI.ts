@@ -4,7 +4,7 @@ import chatbotApiClient from './chatbot-api-client'
 interface ChatbotBotReponse {
   wants_more: boolean
   asking_amount: boolean
-  machine_should_be: 'on' | 'off' | 'unchenged'
+  machine_should_be: 'on' | 'off' | 'unchanged'
 }
 
 export class ChatbotAPI {
