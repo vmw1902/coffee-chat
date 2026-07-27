@@ -25,14 +25,14 @@ export class CoffeeService {
         this.coffeeMachine.coffeeLevel - 0.1,
       );
       this.coffeeMachine.cupsToday += 1;
-      changes.push('Made another coffee');
+      changes.push('made another coffee');
     }
 
-    if (status.machine_should_be !== 'unchanged') {
+    if (status.machine_should_be) {
       this.coffeeMachine.status = status.machine_should_be;
       this.coffeeMachine.temperature =
         status.machine_should_be === 'on' ? 205 : 0;
-      changes.push(`Turned the machine ${status.machine_should_be}`);
+      changes.push(`turned the machine ${status.machine_should_be}`);
     }
 
     this.history.push(

@@ -1,4 +1,4 @@
-export type MachineStatus = 'on' | 'off' | 'unchanged';
+export type MachineStatus = 'on' | 'off';
 export type CoffeeDrink = 'Latte' | 'Espresso' | 'Cappuccino' | 'Americano';
 
 export class CoffeeMachine {
@@ -12,7 +12,7 @@ export class CoffeeMachine {
 export interface UpdateCoffeeStatusRequest {
   wants_more: boolean;
   asking_amount: boolean;
-  machine_should_be: MachineStatus;
+  machine_should_be?: MachineStatus;
   message: string;
 }
 
