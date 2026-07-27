@@ -28,16 +28,14 @@ export class CoffeeService {
       changes.push('not enough coffee to make another cup');
     }
 
-    if (status.machine_should_be) {
+    if (this.coffeeMachine.status != status.machine_should_be) {
       this.coffeeMachine.status = status.machine_should_be;
       this.coffeeMachine.temperature =
         status.machine_should_be === 'on' ? 205 : 0;
-
-      if (status.machine_should_be === 'on') {
-        this.coffeeMachine.coffeeLevel = 1;
-      }
-
       changes.push(`turned the machine ${status.machine_should_be}`);
+    }
+    if (this.coffeeMachine.status === 'on') {
+      this.coffeeMachine.coffeeLevel = 1;
     }
 
     this.history.push(
