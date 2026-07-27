@@ -1,12 +1,24 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Put } from '@nestjs/common';
+import { CoffeeMachine } from './CoffeeMachine';
+import type {
+  UpdateCoffeeStatusRequest,
+  UpdateCoffeeStatusResponse,
+} from './CoffeeMachine';
 import { CoffeeService } from './coffee.service';
 
-@Controller('/coffee')
+@Controller('coffee')
 export class CoffeeController {
   constructor(private readonly coffeeService: CoffeeService) {}
 
   @Get()
-  getHello(): boolean {
-    return this.coffeeService.getStatus();
+  getCoffeeStatus(): CoffeeMachine {
+    return this.coffeeService.getCoffeeStatus();
+  }
+
+  @Put('status')
+  updateStatus(
+    @Body() body: UpdateCoffeeStatusRequest,
+  ): UpdateCoffeeStatusResponse {
+    return this.coffeeService.updateStatus(body);
   }
 }
