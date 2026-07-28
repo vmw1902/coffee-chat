@@ -1,12 +1,37 @@
 import type { AxiosResponse } from 'axios'
 import coffeeApiClient from './coffee-api-client'
 
-interface CoffeeAPIReponse {
-  status: boolean
+export type MachineStatus = 'on' | 'off'
+export type CoffeeDrink = 'Latte' | 'Espresso' | 'Cappuccino' | 'Americano'
+
+export interface CoffeeMachine {
+  status: MachineStatus
+  temperature: number
+  currentDrink: CoffeeDrink
+  cupsToday: number
+  coffeeLevel: number
+}
+
+export interface UpdateCoffeeStatusRequest {
+  wants_more: boolean
+  asking_amount: boolean
+  machine_should_be?: MachineStatus
+  message: string
+}
+
+export interface UpdateCoffeeStatusResponse {
+  coffeeMachine: CoffeeMachine
+  history: string[]
 }
 
 export class CoffeeAPI {
-  static chatbotControllerSendMessage(message: string): Promise<AxiosResponse<CoffeeAPIReponse>> {
-    return coffeeApiClient.post('/chat', { message })
+  static getCoffeeStatus(): Promise<AxiosResponse<CoffeeMachine>> {
+    return coffeeApiClient.get('/coffee')
+  }
+
+  static updateCoffeeStatus(
+    status: UpdateCoffeeStatusRequest,
+  ): Promise<AxiosResponse<UpdateCoffeeStatusResponse>> {
+    return coffeeApiClient.put('/coffee/status', status)
   }
 }

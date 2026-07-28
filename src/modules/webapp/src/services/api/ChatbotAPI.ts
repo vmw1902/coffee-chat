@@ -1,14 +1,15 @@
 import type { AxiosResponse } from 'axios'
+import type { MachineStatus } from './CoffeeAPI'
 import chatbotApiClient from './chatbot-api-client'
 
-interface ChatbotBotReponse {
+export interface ChatbotResponse {
   wants_more: boolean
   asking_amount: boolean
-  machine_should_be: 'on' | 'off' | 'unchenged'
+  machine_should_be?: MachineStatus
 }
 
 export class ChatbotAPI {
-  static chatbotControllerSendMessage(message: string): Promise<AxiosResponse<ChatbotBotReponse>> {
+  static sendMessage(message: string): Promise<AxiosResponse<ChatbotResponse>> {
     return chatbotApiClient.post('/chat', { message })
   }
 }
