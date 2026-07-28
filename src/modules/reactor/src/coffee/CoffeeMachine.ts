@@ -12,7 +12,7 @@ export class CoffeeMachine {
 export interface UpdateCoffeeStatusRequest {
   wants_more: boolean;
   asking_amount: boolean;
-  machine_should_be?: MachineStatus;
+  machine_should_be: MachineStatus;
   message: string;
 }
 
