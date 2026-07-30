@@ -15,17 +15,19 @@ export interface CoffeeMachine {
 export interface UpdateCoffeeStatusRequest {
   wants_more: boolean
   asking_amount: boolean
-  machine_should_be?: MachineStatus
+  machine_should_be: MachineStatus
   message: string
 }
 
-export interface UpdateCoffeeStatusResponse {
+export interface CoffeeStatusResponse {
   coffeeMachine: CoffeeMachine
   history: string[]
 }
 
+export type UpdateCoffeeStatusResponse = CoffeeStatusResponse
+
 export class CoffeeAPI {
-  static getCoffeeStatus(): Promise<AxiosResponse<CoffeeMachine>> {
+  static getCoffeeStatus(): Promise<AxiosResponse<CoffeeStatusResponse>> {
     return coffeeApiClient.get('/coffee')
   }
 

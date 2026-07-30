@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {
   CoffeeMachine,
+  CoffeeStatusResponse,
   UpdateCoffeeStatusRequest,
   UpdateCoffeeStatusResponse,
 } from './CoffeeMachine';
@@ -10,8 +11,11 @@ export class CoffeeService {
   private coffeeMachine = new CoffeeMachine();
   private history: string[] = [];
 
-  getCoffeeStatus(): CoffeeMachine {
-    return this.coffeeMachine;
+  getCoffeeStatus(): CoffeeStatusResponse {
+    return {
+      coffeeMachine: this.coffeeMachine,
+      history: this.history,
+    };
   }
 
   updateStatus(status: UpdateCoffeeStatusRequest): UpdateCoffeeStatusResponse {
@@ -28,7 +32,7 @@ export class CoffeeService {
       changes.push('not enough coffee to make another cup');
     }
 
-    if (this.coffeeMachine.status != status.machine_should_be) {
+    if (this.coffeeMachine.status !== status.machine_should_be) {
       this.coffeeMachine.status = status.machine_should_be;
       this.coffeeMachine.temperature =
         status.machine_should_be === 'on' ? 205 : 0;
@@ -36,6 +40,12 @@ export class CoffeeService {
     }
     if (this.coffeeMachine.status === 'on') {
       this.coffeeMachine.coffeeLevel = 1;
+    }
+
+    if (status.asking_amount) {
+      changes.push(
+        `there is ${Math.round(this.coffeeMachine.coffeeLevel * 100)}% coffee left`,
+      );
     }
 
     this.history.push(

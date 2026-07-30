@@ -41,12 +41,10 @@ const newMessage = ref('')
 function sendMessage() {
   const message = newMessage.value.trim()
 
-  if (!message) {
-    return
+  if (message) {
+    emit('sendMessage', message)
+    newMessage.value = ''
   }
-
-  emit('sendMessage', message)
-  newMessage.value = ''
 }
 </script>
 

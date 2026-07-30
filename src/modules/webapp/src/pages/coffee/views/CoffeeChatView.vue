@@ -29,6 +29,8 @@ const messages = ref<ChatMessage[]>([])
 onMounted(getCoffeeStatus)
 
 async function handleUserMessage(message: string) {
+  messages.value.push({ sender: 'User', text: message })
+
   const chatbotResponse = await ChatbotAPI.sendMessage(message)
   const coffeeResponse = await CoffeeAPI.updateCoffeeStatus({
     ...chatbotResponse.data,
@@ -36,25 +38,32 @@ async function handleUserMessage(message: string) {
   })
 
   coffeeMachine.value = coffeeResponse.data.coffeeMachine
-  updateMessages(coffeeResponse.data.history)
-
-  if (chatbotResponse.data.asking_amount) {
-    await getCoffeeStatus()
-  }
+  addLatestMessage(coffeeResponse.data.history)
 }
 
 async function getCoffeeStatus() {
   const response = await CoffeeAPI.getCoffeeStatus()
-  coffeeMachine.value = response.data
+  coffeeMachine.value = response.data.coffeeMachine
+  updateMessages(response.data.history)
 }
 
 function updateMessages(history: string[]) {
-  messages.value = history.map((historyEntry) => {
-    const separatorIndex = historyEntry.indexOf(': ')
-    const sender = historyEntry.slice(0, separatorIndex) as ChatMessage['sender']
-    const text = historyEntry.slice(separatorIndex + 2)
+  messages.value = history.map(toChatMessage)
+}
 
-    return { sender, text }
-  })
+function addLatestMessage(history: string[]) {
+  const latestMessage = history.at(-1)
+
+  if (latestMessage) {
+    messages.value.push(toChatMessage(latestMessage))
+  }
+}
+
+function toChatMessage(historyEntry: string): ChatMessage {
+  const historyArray = historyEntry.split(': ')
+  const sender = historyArray[0] as ChatMessage['sender']
+  const text = historyArray[1] ?? ''
+
+  return { sender, text }
 }
 </script>

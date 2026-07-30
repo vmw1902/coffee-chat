@@ -16,7 +16,9 @@ export interface UpdateCoffeeStatusRequest {
   message: string;
 }
 
-export interface UpdateCoffeeStatusResponse {
+export interface CoffeeStatusResponse {
   coffeeMachine: CoffeeMachine;
   history: string[];
 }
+
+export type UpdateCoffeeStatusResponse = CoffeeStatusResponse;

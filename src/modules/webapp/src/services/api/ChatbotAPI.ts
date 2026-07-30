@@ -5,7 +5,7 @@ import chatbotApiClient from './chatbot-api-client'
 export interface ChatbotResponse {
   wants_more: boolean
   asking_amount: boolean
-  machine_should_be?: MachineStatus
+  machine_should_be: MachineStatus
 }
 
 export class ChatbotAPI {
