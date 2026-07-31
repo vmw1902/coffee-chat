@@ -6,7 +6,7 @@
     <div class="info">
       <p><strong>Status:</strong> {{ status }}</p>
       <p><strong>Temperature:</strong> {{ temperature }}°C</p>
-      <p><strong>Drink:</strong> {{ currentDrink }}</p>
+
       <p><strong>Cups Today:</strong> {{ cupsToday }}</p>
     </div>
   </div>

@@ -2,12 +2,10 @@ import type { AxiosResponse } from 'axios'
 import coffeeApiClient from './coffee-api-client'
 
 export type MachineStatus = 'on' | 'off'
-export type CoffeeDrink = 'Latte' | 'Espresso' | 'Cappuccino' | 'Americano' | 'Pour Over'
 
 export interface CoffeeMachine {
   status: MachineStatus
   temperature: number
-  currentDrink: CoffeeDrink
   cupsToday: number
   coffeeLevel: number
 }
