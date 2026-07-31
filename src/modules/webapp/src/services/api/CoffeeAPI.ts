@@ -13,7 +13,7 @@ export interface CoffeeMachine {
 }
 
 export interface UpdateCoffeeStatusRequest {
-  wants_more: boolean
+  wants_coffee: boolean
   asking_amount: boolean
   machine_should_be: MachineStatus
   message: string

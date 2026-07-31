@@ -3,7 +3,7 @@ import type { MachineStatus } from './CoffeeAPI'
 import chatbotApiClient from './chatbot-api-client'
 
 export interface ChatbotResponse {
-  wants_more: boolean
+  wants_coffee: boolean
   asking_amount: boolean
   machine_should_be: MachineStatus
 }
