@@ -13,7 +13,10 @@ MODEL = "llama3.2:3b"
 SYSTEM_PROMPT = (
     'Classify coffee-mahine requests. Reply ONLY with JSON: '
     '{"wants_more": bool, "asking_amount": bool, '
-    '"machine_should_be": "on"|"off"|"unchanged"}'
+    '"machine_should_be": "on"|"off"|"unchanged", '
+    '"coffee_type: "Latte"|"Espresso"|"Cappuccino"|"Americano"|"Pour Over"}"'
+    'If someone asks for a cup of coffee but the machine is off, unless explicitly asked to turn it on, keep it off.'
+    'The default coffee_type if a change is not requested is a "Pour Over". After a change has been requested, the default will update to the new one.'
 )
 
 @asynccontextmanager
