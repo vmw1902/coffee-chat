@@ -20,7 +20,6 @@ interface ChatMessage {
 const coffeeMachine = ref<CoffeeMachine>({
   status: 'off',
   temperature: 0,
-  currentDrink: 'Pour Over',
   cupsToday: 0,
   coffeeLevel: 0.8,
 })
