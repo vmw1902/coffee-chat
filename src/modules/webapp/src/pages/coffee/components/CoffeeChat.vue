@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
+    <h2 aria-live="polite">Chat History</h2>
     <div class="history" aria-live="polite">
-      <h2>Chat History</h2>
       <div
         v-for="message in messages"
         :key="message.sender + message.text"

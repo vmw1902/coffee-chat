@@ -1,11 +1,8 @@
 export type MachineStatus = 'on' | 'off';
-export type CoffeeDrink =
-  'Latte' | 'Espresso' | 'Cappuccino' | 'Americano' | 'Pour Over';
 
 export class CoffeeMachine {
   status: MachineStatus = 'off';
   temperature = 0;
-  currentDrink: CoffeeDrink = 'Pour Over';
   cupsToday = 0;
   coffeeLevel = 0.8;
 }
