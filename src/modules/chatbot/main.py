@@ -20,6 +20,7 @@ SYSTEM_PROMPT = (
     'If they do not ask for a cup of coffee to be produced, wants_coffee should be false'
     'If the machine is on, but the user asks for a cup of coffee, turn it off unless they specify to keep the machine on.'
     'If they ask to only turn the machine on or off, that does not mean that they want another cup of coffee'
+    'If they ask for how much coffee is left, asking_amount should be true'
     'The default coffee_type if a change is not requested is a "Pour Over". After a change has been requested, the default will update to the new one.'
 )
 
