@@ -2,11 +2,9 @@
   <div class="flex flex-col">
     <CoffePot :level="coffeeLevel" />
     <div>Coffee Status</div>
-
     <div class="info">
       <p><strong>Status:</strong> {{ status }}</p>
       <p><strong>Temperature:</strong> {{ temperature }}°C</p>
-
       <p><strong>Cups Today:</strong> {{ cupsToday }}</p>
     </div>
   </div>

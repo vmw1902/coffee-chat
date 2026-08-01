@@ -16,10 +16,12 @@ SYSTEM_PROMPT = (
     '"machine_should_be": "on"|"off", '
     'If someone asks for a cup of coffee but the machine is off, unless explicitly asked to turn it on, keep it off.'
     'If someone asks for a cup of coffee or to make a cup of coffee, regardless of the machine being on or off, wants_coffee should be true'
+    'If you are not told to turn the machine on or off explicitly, do not change the machine_should_be value, use its previous value'
     'If they do not ask for a cup of coffee to be produced, wants_coffee should be false'
-    'If the machine is on, but the user asks for a cup of coffee, turn it off unless they specify to keep the machine on.'
     'If they ask to only turn the machine on or off, that does not mean that they want another cup of coffee'
+    'If the user asks for the machine to be explicitly off, machine_should_be should be off, but if asked explicitly for it to be on, machine_should_be should be on.'
     'If they ask for how much coffee is left, asking_amount should be true'
+    'If you do not know how to respond, asking_amount should be false, machine_should_be will stay the same, and wants_coffee will be false'
 )
 
 @asynccontextmanager

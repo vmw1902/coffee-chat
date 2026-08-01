@@ -1,9 +1,11 @@
 <template>
-  <nav class="links">
-    <RouterLink :to="{ name: home }">Home</RouterLink>
-    <RouterLink :to="{ name: coffeeChat }">Coffee Chat</RouterLink>
-  </nav>
-  <RouterView class="app" id="app" />
+  <div class="h-screen w-screen">
+    <nav class="links">
+      <RouterLink :to="{ name: home }">Home</RouterLink>
+      <RouterLink :to="{ name: coffeeChat }">Coffee Chat</RouterLink>
+    </nav>
+    <RouterView class="h-fit w-full" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -17,10 +19,6 @@ const coffeeChat = RouteNames.COFFEE_CHAT_VIEW
 @reference "tailwindcss";
 
 .links {
-  @apply col-span-full h-fit flex flex-row gap-2 font-bold text-2xl;
-}
-
-.app {
-  @apply h-screen w-screen;
+  @apply flex flex-row gap-2 font-bold text-2xl p-4;
 }
 </style>

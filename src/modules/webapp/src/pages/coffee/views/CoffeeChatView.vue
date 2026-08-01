@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row gap-6 p-6">
+  <div class="flex flex-row gap-6 p-4">
     <CoffeeChat class="w-1/2" :messages="messages" @send-message="handleUserMessage" />
     <CoffeeStatus class="w-1/2 max-w-sm" v-bind="coffeeMachine" />
   </div>

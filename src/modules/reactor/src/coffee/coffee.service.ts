@@ -21,13 +21,16 @@ export class CoffeeService {
   updateStatus(status: UpdateCoffeeStatusRequest): UpdateCoffeeStatusResponse {
     const changes: string[] = [];
 
+    const message = !this.coffeeMachine.cupsToday
+      ? 'made a cup of coffee'
+      : 'made another coffee';
     if (status.wants_coffee && this.coffeeMachine.coffeeLevel >= 0.1) {
       this.coffeeMachine.coffeeLevel = Math.max(
         0,
         this.coffeeMachine.coffeeLevel - 0.1,
       );
       this.coffeeMachine.cupsToday += 1;
-      changes.push('made another coffee');
+      changes.push(message);
     } else if (status.wants_coffee) {
       changes.push('not enough coffee to make another cup');
     }

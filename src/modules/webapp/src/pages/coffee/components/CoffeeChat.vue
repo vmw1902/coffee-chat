@@ -8,7 +8,7 @@
         :class="message.sender === 'CoffeeBot' ? 'coffee-bot' : 'user'"
       >
         <strong>{{ message.sender }}:</strong>
-        <p>{{ message.text }}</p>
+        <p class="first-letter:uppercase">{{ message.text }}</p>
       </div>
     </div>
 
