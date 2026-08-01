@@ -1,14 +1,12 @@
 <template>
-  <div class="home">
-    <section class="hero">
-      <div class="hero-content">
-        <h1>The Coffee Shop</h1>
-        <p>Freshly brewed coffee made with passion.</p>
-      </div>
+  <div class="p-4 flex flex-col gap-y-4">
+    <section>
+      <h1>The Coffee Shop</h1>
+      <p>Freshly brewed coffee made with passion.</p>
     </section>
 
-    <section class="about">
-      <div class="box">
+    <section>
+      <div class="max-w-4xl">
         <h2>About Us</h2>
 
         <p>
@@ -19,7 +17,7 @@
       </div>
     </section>
 
-    <section class="contact">
+    <section>
       <h2>Visit Us</h2>
 
       <p>📍 420 Coffee Street</p>
