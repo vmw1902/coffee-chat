@@ -1,47 +1,47 @@
 <template>
   <div class="flex flex-col">
-    <div>
+    <h2 aria-live="polite">Chat History</h2>
+    <div class="history text-wrap" aria-live="polite">
       <div
         v-for="message in messages"
         :key="message.sender + message.text"
         :class="message.sender === 'CoffeeBot' ? 'coffee-bot' : 'user'"
       >
         <strong>{{ message.sender }}:</strong>
-        <p>{{ message.text }}</p>
+        <p class="first-letter:uppercase">{{ message.text }}</p>
       </div>
     </div>
 
-    <div class="input-row">
+    <form class="input-row" @submit.prevent="sendMessage">
       <input v-model="newMessage" placeholder="Ask the coffee machine..." />
 
-      <button>Send</button>
-    </div>
+      <button type="submit">Send</button>
+    </form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import type { ChatMessage } from '../views/CoffeeChatView.vue'
 
-const placeholder = 'Waiting for backend...'
+defineProps<{
+  messages: ChatMessage[]
+}>()
 
-const CoffeeBot = 'CoffeeBot'
+const emit = defineEmits<{
+  sendMessage: [message: string]
+}>()
 
 const newMessage = ref('')
 
-const messages = ref([
-  {
-    sender: 'User',
-    text: 'Make me a latte.',
-  },
-  {
-    sender: 'CoffeeBot',
-    text: 'Starting your latte!',
-  },
-  {
-    sender: 'User',
-    text: 'Thanks!',
-  },
-])
+function sendMessage() {
+  const message = newMessage.value.trim()
+
+  if (message) {
+    emit('sendMessage', message)
+    newMessage.value = ''
+  }
+}
 </script>
 
 <style scoped>
@@ -60,6 +60,11 @@ const messages = ref([
   padding: 15px;
   margin: 20px 0;
   background: white;
+  color: black;
+}
+
+h2 {
+  margin: 0 0 12px;
 }
 
 .user {
@@ -82,6 +87,7 @@ const messages = ref([
 input {
   flex: 1;
   padding: 10px;
+  color: black;
 }
 
 button {

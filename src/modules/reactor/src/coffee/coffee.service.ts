@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {
   CoffeeMachine,
+  CoffeeStatusResponse,
   UpdateCoffeeStatusRequest,
   UpdateCoffeeStatusResponse,
 } from './CoffeeMachine';
@@ -10,25 +11,31 @@ export class CoffeeService {
   private coffeeMachine = new CoffeeMachine();
   private history: string[] = [];
 
-  getCoffeeStatus(): CoffeeMachine {
-    return this.coffeeMachine;
+  getCoffeeStatus(): CoffeeStatusResponse {
+    return {
+      coffeeMachine: this.coffeeMachine,
+      history: this.history,
+    };
   }
 
   updateStatus(status: UpdateCoffeeStatusRequest): UpdateCoffeeStatusResponse {
     const changes: string[] = [];
 
-    if (status.wants_more && this.coffeeMachine.coffeeLevel >= 0.1) {
+    const message = !this.coffeeMachine.cupsToday
+      ? 'made a cup of coffee'
+      : 'made another coffee';
+    if (status.wants_coffee && this.coffeeMachine.coffeeLevel >= 0.1) {
       this.coffeeMachine.coffeeLevel = Math.max(
         0,
         this.coffeeMachine.coffeeLevel - 0.1,
       );
       this.coffeeMachine.cupsToday += 1;
-      changes.push('made another coffee');
-    } else if (status.wants_more) {
+      changes.push(message);
+    } else if (status.wants_coffee) {
       changes.push('not enough coffee to make another cup');
     }
 
-    if (this.coffeeMachine.status != status.machine_should_be) {
+    if (this.coffeeMachine.status !== status.machine_should_be) {
       this.coffeeMachine.status = status.machine_should_be;
       this.coffeeMachine.temperature =
         status.machine_should_be === 'on' ? 205 : 0;
@@ -36,6 +43,12 @@ export class CoffeeService {
     }
     if (this.coffeeMachine.status === 'on') {
       this.coffeeMachine.coffeeLevel = 1;
+    }
+
+    if (status.asking_amount) {
+      changes.push(
+        `there is ${Math.round(this.coffeeMachine.coffeeLevel * 100)}% coffee left`,
+      );
     }
 
     this.history.push(

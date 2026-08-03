@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Put } from '@nestjs/common';
-import { CoffeeMachine } from './CoffeeMachine';
+import type { CoffeeStatusResponse } from './CoffeeMachine';
 import type {
   UpdateCoffeeStatusRequest,
   UpdateCoffeeStatusResponse,
@@ -11,7 +11,7 @@ export class CoffeeController {
   constructor(private readonly coffeeService: CoffeeService) {}
 
   @Get()
-  getCoffeeStatus(): CoffeeMachine {
+  getCoffeeStatus(): CoffeeStatusResponse {
     return this.coffeeService.getCoffeeStatus();
   }
 

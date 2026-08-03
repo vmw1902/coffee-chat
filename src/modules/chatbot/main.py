@@ -12,12 +12,16 @@ MODEL = "llama3.2:3b"
 
 SYSTEM_PROMPT = (
     'Classify coffee-mahine requests. Reply ONLY with JSON: '
-    '{"wants_more": bool, "asking_amount": bool, '
+    '{"wants_coffee": bool, "asking_amount": bool, '
     '"machine_should_be": "on"|"off", '
-    '"coffee_type: "Latte"|"Espresso"|"Cappuccino"|"Americano"|"Pour Over"}"'
-    'If someone asks for a cup of coffee but the machine is off, unless explicitly asked to turn it on, keep it off.'
-    'If the machine is on, but the user asks for a cup of coffee, turn it off unless they specify to keep the machine on.'
-    'The default coffee_type if a change is not requested is a "Pour Over". After a change has been requested, the default will update to the new one.'
+    'The default values for the json should be that wants_coffee is false, asking_amount is false, and machine_should_be off'
+    'If someone asks for a cup of coffee or for one to be made, this does not mean for machine_should_be to be on, keep it off unless explicitly mentioned.'
+    'If someone asks for a cup of coffee or to make a cup of coffee, regardless of the machine being on or off, wants_coffee should be true'
+    'Only change the machine_should_be value if explicitly told to turn the machine on or off.'
+    'If they do not ask for a cup of coffee to be produced, wants_coffee should be false'
+    'If they ask to only turn the machine on or off, that does not mean that they want another cup of coffee'
+    'If they ask for how much coffee is left, asking_amount should be true'
+    'If you get a message that will not produce a valid output from you, asking_amount should be false, machine_should_be will stay the same, and wants_coffee will be false'
 )
 
 @asynccontextmanager
