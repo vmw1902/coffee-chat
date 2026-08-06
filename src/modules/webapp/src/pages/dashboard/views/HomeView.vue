@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="text-black">
     <!-- Hero -->
     <section class="hero">
       <div class="content">
