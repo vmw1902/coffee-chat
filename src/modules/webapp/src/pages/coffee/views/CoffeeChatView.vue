@@ -12,7 +12,7 @@ import { CoffeeAPI, type CoffeeMachine } from '@/services/api/CoffeeAPI'
 import CoffeeChat from '../components/CoffeeChat.vue'
 import CoffeeStatus from '../components/CoffeeStatus.vue'
 
-interface ChatMessage {
+export interface ChatMessage {
   sender: 'User' | 'CoffeeBot'
   text: string
 }

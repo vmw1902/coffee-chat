@@ -50,7 +50,7 @@
           <span class="contact-icon">📍</span>
           <div>
             <strong>Location</strong>
-            <p>420 Coffee Street</p>
+            <p>123 Coffee Street</p>
           </div>
         </div>
         <div class="contact-item">

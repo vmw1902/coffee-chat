@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <h2 aria-live="polite">Chat History</h2>
-    <div class="history" aria-live="polite">
+    <div class="history text-wrap" aria-live="polite">
       <div
         v-for="message in messages"
         :key="message.sender + message.text"
@@ -22,11 +22,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
-interface ChatMessage {
-  sender: 'User' | 'CoffeeBot'
-  text: string
-}
+import type { ChatMessage } from '../views/CoffeeChatView.vue'
 
 defineProps<{
   messages: ChatMessage[]
