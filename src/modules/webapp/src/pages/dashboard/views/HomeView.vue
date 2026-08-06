@@ -120,7 +120,6 @@
   color: #57606a;
   max-width: 60ch;
 }
-
 .features {
   @apply grid grid-cols-1 gap-8;
 }
